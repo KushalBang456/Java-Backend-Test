@@ -2,13 +2,11 @@ name: Java CI
 
 on:
   pull_request:
-    branches: [ "main" ]
-  # Allow manual trigger for testing
+    
   workflow_dispatch:
 
 jobs:
   api-governance:
-    # REPLACE 'YOUR_USERNAME' WITH YOUR ACTUAL GITHUB HANDLE
     uses: KushalBang456/API-Governance-POC/.github/workflows/api-governance.yaml@main
     with:
       swagger_path: 'swagger.yaml'
