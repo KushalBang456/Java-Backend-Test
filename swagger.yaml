@@ -741,19 +741,21 @@ paths:
       tags:
         - admin
       summary: Check system health
-      description: Returns the health status of the API.
+      # description: Returns the health status. <--- REMOVED THIS
       operationId: getHealth
       responses:
         '200':
           description: System is healthy
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: "ok"
+  /orders/quick:
+    post:
+      tags:
+        - store
+      summary: Quick order
+      # No description here!
+      operationId: quickOrder
+      responses:
+        '200':
+          description: Quick order placed
 components:
   schemas:
     Order:
