@@ -741,21 +741,47 @@ paths:
       tags:
         - admin
       summary: Check system health
-      description: Returns the health status of the API.
+      # description: Returns the health status. <--- REMOVED THIS
       operationId: getHealth
       responses:
         '200':
           description: System is healthy
+# --- TEST CASE 3: NEW ENDPOINT (Strict Lint should FAIL) ---
+  /orders/quick:
+    post:
+      tags:
+        - store
+      summary: Quick order
+      # description: REMOVED intentionally for testing
+      operationId: quickOrder
+      requestBody:
+        description: Simple order request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickOrderRequest' # Uses NEW schema
+      responses:
+        '200':
+          description: Quick order placed
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: "ok"
+                $ref: '#/components/schemas/Order' # Uses EXISTING schema
 components:
   schemas:
+    # --- NEW SCHEMA FOR TEST ---
+    QuickOrderRequest:
+      type: object
+      properties:
+        petId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          default: 1
+      required:
+        - petId
+    
     Order:
       type: object
       properties:
