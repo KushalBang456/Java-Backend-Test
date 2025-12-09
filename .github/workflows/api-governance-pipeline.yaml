@@ -5,6 +5,10 @@ on:
     
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   api-governance:
     uses: KushalBang456/API-Governance-POC/.github/workflows/api-governance.yaml@main
